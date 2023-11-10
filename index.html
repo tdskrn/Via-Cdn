@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprendendo Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        p,
+        h3,
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style-type: none;
+            background: #fff;
+            margin: 20px auto;
+            border-radius: 10px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+        }
+
+        .box {
+            padding: 100px 0;
+            width: 400px;
+            text-align: center;
+            background: #ddd;
+            margin: 20px;
+            display: inline-block;
+        }
+
+        .fav {
+            background-color: blue;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hello, vue</h1>
+    <div id="app">
+        <div v-if="showBooks">
+            <p>{{name}} com {{ bilheteria}} mil pagantes</p>
+            <button v-on:click="bilheteria++">Aumentar</button>
+            <button v-on:click="bilheteria--">Diminuir</button>
+            <button @click="change"> Change name</button>
+            <div v-for="item in filteredBooks">
+                <p> {{item.name}}</p>
+            </div>
+            <div>
+                <ul>
+                    <li v-for="item in books" :class="{fav: item.isFavorite}"
+                        @click="item.isFavorite = !item.isFavorite">
+                        <h3>
+                            {{item.name }}
+                        </h3>
+                        <p>
+                            {{ item.bilheteria}} mil participantes
+                        </p>
+                    </li>
+                </ul>
+
+
+
+            </div>
+            <!-- binding-->
+            <a :href="url"> Link</a>
+        </div>
+
+        <br>
+        <button @click="changeView">
+            <span v-if="showBooks"> Esconder</span>
+            <span v-if="!showBooks"> Mostrar</span>
+        </button>
+
+
+        <div v-show="showBooks"> Livros sendo exibidos</div>
+
+        <br>
+        <!-- mouse events-->
+        <div class="box" @mouseover="handleEvents">mouseover (enter)</div>
+        <div class="box" @mouseleave="handleEvents"> mouseLeave</div>
+        <div class="box" @dblclick="handleEvents"> double click</div>
+        <div class="box" @mousemove="handleMouseMove"> Mouse position X => {{x}} Mouse position y => {{y}} </div>
+
+
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
